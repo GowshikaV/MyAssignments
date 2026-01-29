@@ -20,7 +20,7 @@ public class ListSelenium {
 		driver.findElement(By.id("twotabsearchtextbox")).sendKeys("phones");
 		driver.findElement(By.id("nav-search-submit-button")).click();
 		
-		List<WebElement> prices = driver.findElements(By.xpath("//div[@role='listitem']//span[@class='a-price-whole']"));
+		List<WebElement> prices = driver.findElements(By.xpath("//div[@role='listitem' and not(.//span[text()='Sponsored'])]//span[@class='a-price-whole']"));
 
 		List<Integer> price = new ArrayList<Integer>();
 		for (int i = 0; i < prices.size(); i++) {
@@ -34,9 +34,10 @@ public class ListSelenium {
 		System.out.println("Mobile Price List: " + price);
 		Integer lowestprice = price.get(0);
 		System.out.println("LowestPrice: " + lowestprice);
-		//Thread.sleep(10000);
-		//driver.quit();
+		Thread.sleep(10000);
+		driver.quit();
 	}
 
 }
 
+////div[@role='listitem']//span[@class='a-price-whole']
